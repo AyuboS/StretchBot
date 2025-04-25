@@ -39,20 +39,19 @@ def poll(offset):
     return offset
 
 def main():
-    offset = None
+    if not LOG_PATH.exists():
+        LOG_PATH.write_text("")
     while True:
         now = dt.datetime.now()
         if 9 <= now.hour < 20:
             send_reminder()
             end = time.time() + 3600
             while time.time() < end:
-                offset = poll(offset)
+                offset = poll(None)
                 time.sleep(5)
         else:
-            offset = poll(offset)
+            offset = poll(None)
             time.sleep(30)
 
 if __name__ == "__main__":
-    if not LOG_PATH.exists():
-        LOG_PATH.write_text("")
     main()

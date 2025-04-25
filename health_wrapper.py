@@ -1,4 +1,3 @@
-# health_wrapper.py
 import threading, http.server, socketserver, main  # ← imports your bot code
 
 class OK(http.server.SimpleHTTPRequestHandler):
@@ -13,5 +12,4 @@ threading.Thread(
     daemon=True
 ).start()
 
-if __name__ == "__main__":
-    main()
+main.main()
